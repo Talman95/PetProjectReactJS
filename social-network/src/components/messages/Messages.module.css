@@ -1,0 +1,32 @@
+.dialog {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   
+    background: #fff;
+    width: 100%;
+    border-radius: 6px;
+    padding: 20px;
+    color: #626262;
+    border-bottom: 1px solid #ccc; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+a{
+    text-decoration: none;
+}
+.dialog_container {    
+    display: flex;
+    align-items: center;
+}
+.image_person img {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.info_message p{
+    font-weight: 500;
+    color: #626262;
+}
+.date_message {
+    color: #1876f2;
+    font-size: 12px;        
+}
