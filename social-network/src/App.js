@@ -1,7 +1,8 @@
 import './App.css';
-import Header from './components/Header/Header';
-import Nav from './components/Nav/Nav';
-import Profile from './components/Profile/Profile';
+import Header from './components/header/Header';
+import Nav from './components/nav/Nav';
+import Profile from './components/profile/Profile';
+import Sidebar from './components/sidebar/Sidebar';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <div className="app_content">
           <Profile />
         </div>
+        <Sidebar />
       </div>
     </div>
   );

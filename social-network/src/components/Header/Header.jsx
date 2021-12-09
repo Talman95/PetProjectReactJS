@@ -1,23 +1,23 @@
-import styles from './Header.module.css';
+import classes from './Header.module.css';
 import logo from './../../assets/images/logo.png';
 import searchButton from './../../assets/images/search.png';
 import userLogo from './../../assets/images/user.png';
 
 const Header = (props) => {
     return (
-        <div className={styles.header}>
-            <div className={styles.header_left}>
-                <img src={logo} className={styles.logo} />
+        <div className={classes.header}>
+            <div className={classes.header_left}>
+                <img src={logo} className={classes.logo} />
             </div>
 
-            <div className={styles.header_right}>
-                <div className={styles.search_box}>
-                    <a className={styles.search_button}>
+            <div className={classes.header_right}>
+                <div className={classes.search_box}>
+                    <a className={classes.search_button}>
                         <img src={searchButton} />
                     </a>
                     <input type="text" placeholder="Search user..." />
                 </div>
-                <div className={styles.header_user_icon}>
+                <div className={classes.header_user_icon}>
                     <a href="">
                         <img src={userLogo} />
                         <p>Profile Name</p>

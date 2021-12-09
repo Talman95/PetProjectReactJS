@@ -3,15 +3,15 @@
     padding: 0;
     font-family: sans-serif;
     box-sizing: border-box;
-  }
+}
 body{
     background: #efefef;
-  }
-.app_container{
+}
+.app_container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 13px 4.5%;
-  }
+}
 .app_content {
     flex-basis: 52%;
     color: #626262;
