@@ -1,25 +1,18 @@
-import { NavLink } from 'react-router-dom';
-import classes from './Messages.module.css';
-import userLogo from './../../assets/images/user.png';
+import MessagesItem from './messagesItem/MessagesItem';
+
 
 const Messages = (props) => {
+    const messagesData = [
+        { id: 0, name: 'Ivan', message: 'Hi, friend' },
+        { id: 1, name: 'Nikolay', message: 'Hi, friend' },
+        { id: 2, name: 'Valerii', message: 'Hi, friend' },
+        { id: 3, name: 'Anna', message: 'Hi, friend' }
+    ]
+
     return (
-        <>
-            <NavLink to={"/messages/" + 1}>
-                <div className={classes.dialog}>
-                    <div className={classes.dialog_container}>
-                        <div className={classes.image_person}>
-                            <img src={userLogo} />
-                        </div>
-                        <div className={classes.info_message}>
-                            <p>Full name</p>
-                            <small>part of last message</small>
-                        </div>
-                    </div>
-                    <div className={classes.date_message}>data</div>
-                </div>
-            </NavLink>
-        </>
+        <div>
+            {messagesData.map(mes => <MessagesItem key={mes.id} id={mes.id} name={mes.name} message={mes.message} />)}
+        </div>
     )
 }
 

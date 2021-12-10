@@ -7,19 +7,19 @@ const Header = (props) => {
     return (
         <div className={classes.header}>
             <div className={classes.header_left}>
-                <img src={logo} className={classes.logo} />
+                <img src={logo} alt="user photo" className={classes.logo} />
             </div>
 
             <div className={classes.header_right}>
                 <div className={classes.search_box}>
                     <a className={classes.search_button}>
-                        <img src={searchButton} />
+                        <img src={searchButton} alt="search button"/>
                     </a>
                     <input type="text" placeholder="Search user..." />
                 </div>
                 <div className={classes.header_user_icon}>
                     <a href="">
-                        <img src={userLogo} />
+                        <img src={userLogo} alt=""/>
                         <p>Profile Name</p>
                     </a>
                 </div>

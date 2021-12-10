@@ -7,7 +7,7 @@ const MyPosts = (props) => {
     return (
         <div className={classes.post_container}>
                 <div className={classes.user_profile}>
-                    <img src={userLogo} />
+                    <img src={userLogo} alt="" />
                     <div>
                         <p>Full Name</p>
                         <span>time</span>
@@ -18,8 +18,8 @@ const MyPosts = (props) => {
 
                 <div className={classes.post_row}>
                     <div className={classes.activity_icons}>
-                        <div><img src={like} />2</div>
-                        <div><img src={comments} />2</div>
+                        <div><img src={like} alt="like" />2</div>
+                        <div><img src={comments} alt="comments" />2</div>
                     </div>
                 </div>
             </div>

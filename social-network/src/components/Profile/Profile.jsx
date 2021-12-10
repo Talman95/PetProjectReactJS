@@ -8,7 +8,7 @@ const Profile = (props) => {
         <div>
             <div className={classes.write_post_container}>
                 <div className={classes.user_profile}>
-                    <img src={userLogo} />
+                    <img src={userLogo} alt=""/>
                     <div>
                         <p>Full Name</p>
                         <small>status</small>

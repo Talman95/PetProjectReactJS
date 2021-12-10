@@ -7,7 +7,7 @@ const ChatBox = (props) => {
             <div className={classes.header}>
                 <div class={classes.button_back}>
                     <NavLink to="/messages" class={classes.button_back}>
-                        <img src="" />
+                        <img src="" alt=""/>
                         Back
                     </NavLink>
                 </div>
@@ -16,14 +16,14 @@ const ChatBox = (props) => {
                     <span class={classes.time}>15 minutes ago...</span>
                 </div>
                 <a href=''>
-                    <img src="" />
+                    <img src="" alt =""/>
                 </a>
             </div>
 
             <div className={classes.chatlogs}>
                 <div className={classes.chat}>
                     <div className={classes.user_photo}>
-                        <img src="" />
+                        <img src="" alt="" />
                     </div>
                     <p className={classes.chat_message}>
                         messages
