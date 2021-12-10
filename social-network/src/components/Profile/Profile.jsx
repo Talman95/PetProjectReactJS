@@ -1,27 +1,19 @@
-import userLogo from './../../assets/images/user.png';
-import classes from './Profile.module.css';
-import MyButton from '../UI/button/MyButton';
 import MyPosts from './posts/MyPosts';
+import ProfileInfo from './profileInfo/ProfileInfo';
 
 const Profile = (props) => {
+    const profileData = [
+        { id: 2, message: "Wooooooow, cool", likeCount: 1, commentsCount: 2 },
+        { id: 1, message: "It is my first app in react!", likeCount: 5, commentsCount: 0 },
+        { id: 0, message: "Hello everyone!", likeCount: 2, commentsCount: 3 }
+    ]
+
     return (
         <div>
-            <div className={classes.write_post_container}>
-                <div className={classes.user_profile}>
-                    <img src={userLogo} alt=""/>
-                    <div>
-                        <p>Full Name</p>
-                        <small>status</small>
-                    </div>
-                </div>
-                <div className={classes.post_input_container}>
-                    <textarea rows="3" placeholder="How you doin?"></textarea>
-                    <div className={classes.add_post_button}>
-                        <MyButton>Add a post</MyButton>
-                    </div>
-                </div>                
-            </div>
-            <MyPosts />          
+            <ProfileInfo />
+            {profileData.map(post =>
+                <MyPosts key={post.id} id={post.id} message={post.message}
+                    likeCount={post.likeCount} commentsCount={post.commentsCount} /> )}
         </div>
     )
 }

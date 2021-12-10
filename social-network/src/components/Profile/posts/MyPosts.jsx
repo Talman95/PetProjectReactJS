@@ -14,12 +14,12 @@ const MyPosts = (props) => {
                     </div>
                 </div>
 
-                <p className={classes.post_text}>Message</p>
+                <p className={classes.post_text}>{props.message}</p>
 
                 <div className={classes.post_row}>
                     <div className={classes.activity_icons}>
-                        <div><img src={like} alt="like" />2</div>
-                        <div><img src={comments} alt="comments" />2</div>
+                        <div><img src={like} alt="like" />{props.likeCount}</div>
+                        <div><img src={comments} alt="comments" />{props.commentsCount}</div>
                     </div>
                 </div>
             </div>
