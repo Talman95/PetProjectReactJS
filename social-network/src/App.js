@@ -6,6 +6,7 @@ import Profile from './components/profile/Profile';
 import Sidebar from './components/sidebar/Sidebar';
 import Messages from './components/messages/Messages';
 import ChatBox from './components/messages/chatBox/ChatBox';
+import Users from './components/users/Users';
 
 function App() {
   return (    
@@ -18,6 +19,7 @@ function App() {
               <Route path="/" element={<Profile />} />
               <Route path="/messages" element={<Messages />} />
               <Route path="/messages/:id" element={<ChatBox />} />
+              <Route path="/users" element={<Users />} />
             </Routes>
           </div>
           <Sidebar />
