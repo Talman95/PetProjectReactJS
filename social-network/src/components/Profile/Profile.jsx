@@ -1,19 +1,19 @@
 import MyPosts from './posts/MyPosts';
 import ProfileInfo from './profileInfo/ProfileInfo';
+import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const Profile = (props) => {
-    const profileData = [
-        { id: 2, message: "Wooooooow, cool", likeCount: 1, commentsCount: 2 },
-        { id: 1, message: "It is my first app in react!", likeCount: 5, commentsCount: 0 },
-        { id: 0, message: "Hello everyone!", likeCount: 2, commentsCount: 3 }
-    ]
+    const posts = useSelector(state => state.profile.posts);
+    const newPostText = useSelector(state => state.profile.newPostText);
+
 
     return (
         <div>
-            <ProfileInfo />
-            {profileData.map(post =>
+            <ProfileInfo newPostText={newPostText}/>
+            {posts.map(post =>
                 <MyPosts key={post.id} id={post.id} message={post.message}
-                    likeCount={post.likeCount} commentsCount={post.commentsCount} /> )}
+                    likeCount={post.likeCount} commentsCount={post.commentsCount} />)}
         </div>
     )
 }
