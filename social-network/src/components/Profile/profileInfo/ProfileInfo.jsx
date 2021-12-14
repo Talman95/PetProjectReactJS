@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 const ProfileInfo = (props) => {
     const dispatch = useDispatch();
+    
     const addPost = () => {
         dispatch({type: "ADD_POST"})
     }
