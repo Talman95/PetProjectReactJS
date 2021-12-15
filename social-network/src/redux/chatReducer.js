@@ -1,3 +1,5 @@
+const SEND_MESSAGE = "SEND_MESSAGE";
+const UPDATE_MESSAGE_TEXT = "UPDATE_MESSAGE_TEXT";
 
 const initialState = {
     chatInfo: [
@@ -24,3 +26,6 @@ const chatReducer = (state = initialState, action) => {
 }
 
 export default chatReducer;
+
+export const sendMessageAction = () => ({type: SEND_MESSAGE});
+export const updateMessageAction = (newText) => ({type: UPDATE_MESSAGE_TEXT, newText});

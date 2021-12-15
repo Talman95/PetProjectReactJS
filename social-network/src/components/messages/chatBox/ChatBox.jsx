@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { sendMessageAction, updateMessageAction } from '../../../redux/chatReducer';
 import MyButton from '../../UI/button/MyButton';
 import classes from './ChatBox.module.css';
 import ChatItem from './ChatItem';
@@ -11,11 +12,11 @@ const ChatBox = (props) => {
     const newMessageText = useSelector(state => state.chat.newMessageText);
 
     const sendMessage = () => {
-        dispatch({type: 'SEND_MESSAGE'});
+        dispatch(sendMessageAction());
     }
     const updateMessageText = (e) => {
-        dispatch({type: 'UPDATE_MESSAGE_TEXT', newText: e.target.value});
-        console.log(newMessageText);
+        let newText = e.target.value;
+        dispatch(updateMessageAction(newText));
     }
 
     return (

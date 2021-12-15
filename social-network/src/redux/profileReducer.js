@@ -1,4 +1,5 @@
-
+const ADD_POST = "ADD_POST";
+const UPDATE_POST_TEXT = "UPDATE_POST_TEXT";
 
 const initialState = {
     posts: [
@@ -17,10 +18,13 @@ const profileReducer = (state = initialState, action) => {
             }
             return {...state, posts: [newPost, ...state.posts]}
         case "UPDATE_POST_TEXT":
-            return {...state, newPostText: action.newPostText}
+            return {...state, newPostText: action.newBody}
         default:
             return state;
     }
 }
 
 export default profileReducer;
+
+export const addPostAction = () => ({type: ADD_POST});
+export const updatePostTextAction = (newBody) => ({type: UPDATE_POST_TEXT, newBody});

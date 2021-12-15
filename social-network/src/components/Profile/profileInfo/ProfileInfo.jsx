@@ -2,16 +2,17 @@ import userLogo from './../../../assets/images/user.png';
 import classes from './ProfileInfo.module.css';
 import MyButton from '../../UI/button/MyButton';
 import { useDispatch } from 'react-redux';
+import { addPostAction, updatePostTextAction } from '../../../redux/profileReducer';
 
 const ProfileInfo = (props) => {
     const dispatch = useDispatch();
     
     const addPost = () => {
-        dispatch({type: "ADD_POST"})
+        dispatch(addPostAction());
     }
     const onChangePost = (e) => {
         let newBody = e.target.value;
-        dispatch({type: "UPDATE_POST_TEXT", newPostText: newBody});
+        dispatch(updatePostTextAction(newBody));
     }
 
     return (
