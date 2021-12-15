@@ -12,9 +12,7 @@
 }
 .container .item .leftside button {
     text-align: center;
-    width: 70px;
-    height: 25px;
-    font-size: 13px;
+    width: 80px;
 }
 .container .item .leftside {
     display: flex;
