@@ -6,7 +6,7 @@ const Sidebar = (props) => {
     return (
         <div className={classes.sidebar}>
             <div className={classes.sidebar_tittle}>
-                <h4>Friends</h4>
+                <h4>Following</h4>
                 <NavLink to="/messages">
                     Hide Chat
                 </NavLink>

@@ -2,13 +2,7 @@ const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const SET_USERS = 'SET_USERS';
 
 const initialState = {
-    users: [
-        { id: 1, followed: true, name: 'Dmitrii', status: 'boss' },
-        { id: 2, followed: false, name: 'Sveta', status: 'qwerty' },
-        { id: 3, followed: true, name: 'Anna', status: 'cool' },
-        { id: 4, followed: true, name: 'Egor', status: 'back' },
-        { id: 5, followed: false, name: 'Oleg', status: 'samurai' }
-    ]
+    users: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -26,7 +20,7 @@ const usersReducer = (state = initialState, action) => {
         }
         case 'SET_USERS':
             return {
-                ...state, users: [...state.users, ...action.newUsers]
+                ...state, users: [...state.users, ...action.users]
             }
         default:
             return state;
@@ -36,4 +30,4 @@ const usersReducer = (state = initialState, action) => {
 export default usersReducer;
 
 export const toggleFollowAction = (userId) => ({ type: TOGGLE_FOLLOW, userId });
-export const setUsersAction = (newUsers) => ({ type: SET_USERS, newUsers });
+export const setUsersAction = (users) => ({ type: SET_USERS, users });
