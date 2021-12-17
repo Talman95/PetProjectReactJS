@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { usersAPI } from '../../API/api';
 import {useState} from 'react';
 import { getPagesArray, getPagesCount } from '../../utils/pages';
+import Loader from '../UI/loader/Loader';
 
 const Users = (props) => {
     const dispatch = useDispatch();
@@ -15,16 +16,19 @@ const Users = (props) => {
     const [totalPages, setTotalPages] = useState(0);
     const [pageSize, setPageSize] = useState(10);
     const [page, setPage] = useState(1);
+    const [isUsersLoading, setIsUsersLoading] = useState(false);
     const toggleFollow = (userId) => {
         dispatch(toggleFollowAction(userId));
     }
     let pages = getPagesArray(23);
     
     async function getUsers() {
+        setIsUsersLoading(true);
         const response = await usersAPI.getUsers(page, pageSize);       
-        dispatch(setUsersAction(response.items));
+        dispatch(setUsersAction(response.items));        
         const totalCount = response.totalCount;
         setTotalPages(getPagesCount(totalCount, pageSize));
+        setIsUsersLoading(false);
     }
     useEffect(() => {
         getUsers();
@@ -35,7 +39,11 @@ const Users = (props) => {
     return (
         <>
         <div className={classes.container}>
-            {users.map(user => <div className={classes.item} key={user.id}>
+            {isUsersLoading 
+            ? 
+            <div className={classes.loader}><Loader /></div> 
+            :
+            users.map(user => <div className={classes.item} key={user.id}>
                 <div className={classes.leftside}>
                     <NavLink to={'/' + user.id}>
                         {user.photos.small ? <img src={user.photos.small} /> : <img src={userLogo} alt="User photo" />}

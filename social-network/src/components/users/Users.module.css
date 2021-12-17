@@ -35,3 +35,7 @@
     border: 1px solid #1876f2;
     cursor: pointer;
 }
+.loader {
+    text-align: center;
+    margin-top: 50px;
+}
