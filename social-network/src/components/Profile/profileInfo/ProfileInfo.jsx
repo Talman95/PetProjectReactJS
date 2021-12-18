@@ -4,7 +4,6 @@ import MyButton from '../../UI/button/MyButton';
 import { useDispatch } from 'react-redux';
 import { addPostAction, updatePostTextAction } from '../../../redux/profileReducer';
 import Loader from '../../UI/loader/Loader';
-import vkLogo from './../../../assets/images/vkLogo.png';
 
 const ProfileInfo = (props) => {
     const dispatch = useDispatch();
@@ -33,11 +32,8 @@ const ProfileInfo = (props) => {
             <div className={classes.post_input_container}>
                 <textarea rows="3" placeholder="How you doin?"
                     value={props.newPostText} onChange={(e) => onChangePost(e)}></textarea>
-                <div className={classes.add_post_links}>
-                    <a href="" title={props.profile.contacts.vk}><img src={vkLogo} />VK</a>
-                    <div className={classes.add_post_button}>
-                        <MyButton onClick={() => addPost()}>Add a post</MyButton>
-                    </div>
+                <div className={classes.add_post_button}>
+                    <MyButton onClick={() => addPost()}>Add a post</MyButton>
                 </div>
             </div>
         </div>

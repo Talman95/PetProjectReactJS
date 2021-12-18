@@ -41,20 +41,3 @@
     margin-right: 10px;
     justify-content: flex-end;
 }
-.add_post_links {
-    display: flex;
-    margin-top: 10px;
-    justify-content: space-between;
-}
-.add_post_links a {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    color: #626262;
-    margin-right: 30px;
-    font-size: 13px;
-}
-.add_post_links a img {
-    width: 30px;
-    margin-right: 10px;
-}

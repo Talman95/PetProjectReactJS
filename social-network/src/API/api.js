@@ -13,8 +13,8 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-    async getProfile() {
-        let response = await axios.get('https://social-network.samuraijs.com/api/1.0/profile/2');
+    async getProfile(userId) {
+        let response = await axios.get('https://social-network.samuraijs.com/api/1.0/profile/' + userId);
         return response.data;
     }
 }

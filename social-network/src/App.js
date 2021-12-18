@@ -17,7 +17,7 @@ function App() {
           <div className="app_content">
             <Routes>
               <Route path="/" element={<Profile />} />
-              <Route path="/:id" element={<Profile />} />
+              <Route path="/:userId" element={<Profile />} />
               <Route path="/messages" element={<Messages />} />
               <Route path="/messages/:id" element={<ChatBox />} />
               <Route path="/users" element={<Users />} />
