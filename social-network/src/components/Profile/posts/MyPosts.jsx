@@ -7,9 +7,9 @@ const MyPosts = (props) => {
     return (
         <div className={classes.post_container}>
                 <div className={classes.user_profile}>
-                    <img src={userLogo} alt="" />
+                    {props.profile.photos.small ? <img src={props.profile.photos.small} /> : <img src={userLogo} alt="" />}
                     <div>
-                        <p>Full Name</p>
+                        <p>props.profile.fullName</p>
                         <span>time</span>
                     </div>
                 </div>

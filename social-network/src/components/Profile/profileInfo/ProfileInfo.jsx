@@ -3,10 +3,12 @@ import classes from './ProfileInfo.module.css';
 import MyButton from '../../UI/button/MyButton';
 import { useDispatch } from 'react-redux';
 import { addPostAction, updatePostTextAction } from '../../../redux/profileReducer';
+import Loader from '../../UI/loader/Loader';
+import vkLogo from './../../../assets/images/vkLogo.png';
 
 const ProfileInfo = (props) => {
     const dispatch = useDispatch();
-    
+
     const addPost = () => {
         dispatch(addPostAction());
     }
@@ -15,20 +17,27 @@ const ProfileInfo = (props) => {
         dispatch(updatePostTextAction(newBody));
     }
 
+    if (!props.profile) {
+        return <Loader />
+    }
+
     return (
         <div className={classes.write_post_container}>
             <div className={classes.user_profile}>
-                <img src={userLogo} alt="" />
+                {props.profile.photos.small ? <img src={props.profile.photos.small} /> : <img src={userLogo} alt="" />}
                 <div>
-                    <p>Full Name</p>
-                    <small>status</small>
+                    <p>{props.profile.fullName}</p>
+                    <small>{props.profile.aboutMe}</small>
                 </div>
             </div>
             <div className={classes.post_input_container}>
                 <textarea rows="3" placeholder="How you doin?"
                     value={props.newPostText} onChange={(e) => onChangePost(e)}></textarea>
-                <div className={classes.add_post_button}>
-                    <MyButton onClick={() => addPost()}>Add a post</MyButton>
+                <div className={classes.add_post_links}>
+                    <a href="" title={props.profile.contacts.vk}><img src={vkLogo} />VK</a>
+                    <div className={classes.add_post_button}>
+                        <MyButton onClick={() => addPost()}>Add a post</MyButton>
+                    </div>
                 </div>
             </div>
         </div>

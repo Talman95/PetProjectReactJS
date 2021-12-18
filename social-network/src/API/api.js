@@ -11,3 +11,10 @@ export const usersAPI = {
         return response.data;
     }
 }
+
+export const profileAPI = {
+    async getProfile() {
+        let response = await axios.get('https://social-network.samuraijs.com/api/1.0/profile/2');
+        return response.data;
+    }
+}
