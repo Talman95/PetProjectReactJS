@@ -11,10 +11,11 @@ const Profile = (props) => {
     const posts = useSelector(state => state.profile.posts);
     const newPostText = useSelector(state => state.profile.newPostText);
     const profile = useSelector(state => state.profile.profile);
+    const authProfile = useSelector(state => state.auth.authProfile);
     const dispatch = useDispatch();
     let { userId } = useParams();
-    if (!userId) {
-        userId = 2;
+    if (!userId){
+        userId = authProfile.userId;
     }
 
     async function getProfile() {
