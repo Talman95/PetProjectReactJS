@@ -18,3 +18,12 @@ export const profileAPI = {
         return response.data;
     }
 }
+
+export const authAPI = {
+    async authMe() {
+        let response = await axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {
+            withCredentials: true
+        });
+        return response.data;
+    }
+}
