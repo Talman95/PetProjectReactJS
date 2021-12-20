@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUsersAction, toggleFollowAction } from './../../redux/usersReducer';
 import { useEffect } from 'react';
 import { usersAPI } from '../../API/api';
-import {useState} from 'react';
+import { useState } from 'react';
 import { getPagesArray, getPagesCount } from '../../utils/pages';
 import Loader from '../UI/loader/Loader';
 
@@ -21,53 +21,63 @@ const Users = (props) => {
         dispatch(toggleFollowAction(userId));
     }
     let pages = getPagesArray(23);
-    
+
     async function getUsers() {
         setIsUsersLoading(true);
-        const response = await usersAPI.getUsers(page, pageSize);       
-        dispatch(setUsersAction(response.items));        
+        const response = await usersAPI.getUsers(page, pageSize);
+        dispatch(setUsersAction(response.items));
         const totalCount = response.totalCount;
         setTotalPages(getPagesCount(totalCount, pageSize));
         setIsUsersLoading(false);
     }
     useEffect(() => {
         getUsers();
-    }, [page]);
+    }, [page, users.followed]);
 
-    
+
 
     return (
         <>
-        <div className={classes.container}>
-            {isUsersLoading 
-            ? 
-            <div className={classes.loader}><Loader /></div> 
-            :
-            users.map(user => <div className={classes.item} key={user.id}>
-                <div className={classes.leftside}>
-                    <NavLink to={'/' + user.id}>
-                        {user.photos.small ? <img src={user.photos.small} /> : <img src={userLogo} alt="User photo" />}
-                    </NavLink>
-                    <div>
-                        {user.followed
-                            ? <MyButton onClick={() => toggleFollow(user.id)}>Unfollow</MyButton>
-                            : <MyButton onClick={() => toggleFollow(user.id)}>Follow</MyButton>}
-                    </div>
-                </div>
-                <div className={classes.rightside}>
-                    <div>
-                        <div>{user.name}</div>
-                        <div>{user.status}</div>
-                    </div>
-                </div>
-            </div>)}
-        </div>
-        <div className={classes.pageWrapper}>
-            {pages.map(p => <span 
-            key={p}
-            onClick={() => setPage(p)}
-            className={page === p ? classes.pageSelected : classes.page}>{p}</span>)}            
-        </div>
+            <div className={classes.container}>
+                {isUsersLoading
+                    ?
+                    <div className={classes.loader}><Loader /></div>
+                    :
+                    users.map(user => <div className={classes.item} key={user.id}>
+                        <div className={classes.leftside}>
+                            <NavLink to={'/' + user.id}>
+                                {user.photos.small ? <img src={user.photos.small} /> : <img src={userLogo} alt="User photo" />}
+                            </NavLink>
+                            <div>
+                                {user.followed
+                                    ? <MyButton onClick={async () => {
+                                        let response = await usersAPI.unfollow(user.id);
+                                        if (response.resultCode === 0) {
+                                            toggleFollow(user.id);
+                                        }
+                                    }}>Unfollow</MyButton>
+                                    : <MyButton onClick={async () => {
+                                        let response = await usersAPI.follow(user.id);
+                                        if (response.resultCode === 0) {
+                                            toggleFollow(user.id);
+                                        }
+                                    }}>Follow</MyButton>}
+                            </div>
+                        </div>
+                        <div className={classes.rightside}>
+                            <div>
+                                <div>{user.name}</div>
+                                <div>{user.status}</div>
+                            </div>
+                        </div>
+                    </div>)}
+            </div>
+            <div className={classes.pageWrapper}>
+                {pages.map(p => <span
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className={page === p ? classes.pageSelected : classes.page}>{p}</span>)}
+            </div>
         </>
     )
 }

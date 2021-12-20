@@ -17,6 +17,14 @@ export const usersAPI = {
             }
         });
         return response.data;
+    },
+    async follow(userId) {
+        let response = await instance.post('follow/' + userId);
+        return response.data;
+    },
+    async unfollow(userId) {
+        let response = await instance.delete('follow/' + userId);
+        return response.data;
     }
 }
 
