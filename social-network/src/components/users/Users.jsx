@@ -3,7 +3,7 @@ import userLogo from './../../assets/images/user.png';
 import MyButton from './../UI/button/MyButton';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { setUsersAction, toggleFollowAction } from './../../redux/usersReducer';
+import { setUsersAction, toggleFollowAction, toggleIsFollowingAction } from './../../redux/usersReducer';
 import { useEffect } from 'react';
 import { usersAPI } from '../../API/api';
 import { useState } from 'react';
@@ -17,6 +17,7 @@ const Users = (props) => {
     const [pageSize, setPageSize] = useState(10);
     const [page, setPage] = useState(1);
     const [isUsersLoading, setIsUsersLoading] = useState(false);
+    const followingInProgress = useSelector(state => state.users.followingInProgress);
     const toggleFollow = (userId) => {
         dispatch(toggleFollowAction(userId));
     }
@@ -32,6 +33,7 @@ const Users = (props) => {
     }
     useEffect(() => {
         getUsers();
+        console.log(followingInProgress);
     }, [page, users.followed]);
 
 
@@ -50,18 +52,28 @@ const Users = (props) => {
                             </NavLink>
                             <div>
                                 {user.followed
-                                    ? <MyButton onClick={async () => {
-                                        let response = await usersAPI.unfollow(user.id);
-                                        if (response.resultCode === 0) {
-                                            toggleFollow(user.id);
-                                        }
-                                    }}>Unfollow</MyButton>
-                                    : <MyButton onClick={async () => {
-                                        let response = await usersAPI.follow(user.id);
-                                        if (response.resultCode === 0) {
-                                            toggleFollow(user.id);
-                                        }
-                                    }}>Follow</MyButton>}
+                                    ? <MyButton disabled={followingInProgress.some(id => id === user.id)}
+                                        onClick={async () => {        
+                                            dispatch(toggleIsFollowingAction(user.id, false)); 
+                                            console.log(followingInProgress);                            
+                                            let response = await usersAPI.unfollow(user.id);                                            
+                                            if (response.resultCode === 0) {
+                                                toggleFollow(user.id);
+                                            }                                            
+                                            dispatch(toggleIsFollowingAction(user.id, true));
+                                            console.log(followingInProgress);
+                                        }}>Unfollow</MyButton>
+                                    : <MyButton disabled={followingInProgress.some(id => id === user.id)}
+                                        onClick={async () => {
+                                            dispatch(toggleIsFollowingAction(user.id, false));
+                                            console.log(followingInProgress);
+                                            let response = await usersAPI.follow(user.id);                                  
+                                            if (response.resultCode === 0) {
+                                                toggleFollow(user.id);
+                                            }
+                                            dispatch(toggleIsFollowingAction(user.id, true));
+                                            console.log(followingInProgress);
+                                        }}>Follow</MyButton>}
                             </div>
                         </div>
                         <div className={classes.rightside}>
