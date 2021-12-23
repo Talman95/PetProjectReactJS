@@ -7,7 +7,8 @@ import { setUsersAction, toggleFollowAction, toggleIsFollowingAction } from './.
 import { useEffect } from 'react';
 import { usersAPI } from '../../API/api';
 import { useState } from 'react';
-import { getPagesArray, getPagesCount } from '../../utils/pages';
+import { getPagesCount } from '../../utils/pages';
+import Paginator from '../../utils/pages';
 import Loader from '../UI/loader/Loader';
 
 const Users = (props) => {
@@ -21,19 +22,17 @@ const Users = (props) => {
     const toggleFollow = (userId) => {
         dispatch(toggleFollowAction(userId));
     }
-    let pages = getPagesArray(23);
 
     async function getUsers() {
         setIsUsersLoading(true);
         const response = await usersAPI.getUsers(page, pageSize);
         dispatch(setUsersAction(response.items));
-        const totalCount = response.totalCount;
+        let totalCount = response.totalCount;
         setTotalPages(getPagesCount(totalCount, pageSize));
         setIsUsersLoading(false);
     }
     useEffect(() => {
         getUsers();
-        console.log(followingInProgress);
     }, [page, users.followed]);
 
 
@@ -53,13 +52,13 @@ const Users = (props) => {
                             <div>
                                 {user.followed
                                     ? <MyButton disabled={followingInProgress.some(id => id === user.id)}
-                                        onClick={async () => {        
-                                            dispatch(toggleIsFollowingAction(user.id, false)); 
-                                            console.log(followingInProgress);                            
-                                            let response = await usersAPI.unfollow(user.id);                                            
+                                        onClick={async () => {
+                                            dispatch(toggleIsFollowingAction(user.id, false));
+                                            console.log(followingInProgress);
+                                            let response = await usersAPI.unfollow(user.id);
                                             if (response.resultCode === 0) {
                                                 toggleFollow(user.id);
-                                            }                                            
+                                            }
                                             dispatch(toggleIsFollowingAction(user.id, true));
                                             console.log(followingInProgress);
                                         }}>Unfollow</MyButton>
@@ -67,7 +66,7 @@ const Users = (props) => {
                                         onClick={async () => {
                                             dispatch(toggleIsFollowingAction(user.id, false));
                                             console.log(followingInProgress);
-                                            let response = await usersAPI.follow(user.id);                                  
+                                            let response = await usersAPI.follow(user.id);
                                             if (response.resultCode === 0) {
                                                 toggleFollow(user.id);
                                             }
@@ -84,11 +83,8 @@ const Users = (props) => {
                         </div>
                     </div>)}
             </div>
-            <div className={classes.pageWrapper}>
-                {pages.map(p => <span
-                    key={p}
-                    onClick={() => setPage(p)}
-                    className={page === p ? classes.pageSelected : classes.page}>{p}</span>)}
+            <div className={classes.paginator}>
+                <Paginator totalItemsCount={totalPages} pageSize={pageSize} currentPage={page} onPageChanged={setPage} portionSize={10} />
             </div>
         </>
     )

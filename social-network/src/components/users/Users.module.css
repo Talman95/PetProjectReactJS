@@ -19,23 +19,11 @@
     flex-flow: column;
     align-items: center;
 }
-.pageWrapper {
-    margin-top: 30px;
-    display: flex;    
-}
-.pageSelected {
-    padding: 10px;
-    border: 1px solid #1876f2;
-    cursor: pointer;
-    font-weight: bold;
-    background: #1876f2;
-}
-.page {
-    padding: 10px;
-    border: 1px solid #1876f2;
-    cursor: pointer;
-}
 .loader {
     text-align: center;
     margin-top: 50px;
+}
+.paginator {
+    display: flex;
+    justify-content: center;
 }

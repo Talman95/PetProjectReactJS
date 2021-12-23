@@ -15,7 +15,7 @@ const Profile = (props) => {
     const dispatch = useDispatch();
     let { userId } = useParams();
     if (!userId){
-        userId = authProfile.userId;
+        userId = 20802;
     }
 
     async function getProfile() {
