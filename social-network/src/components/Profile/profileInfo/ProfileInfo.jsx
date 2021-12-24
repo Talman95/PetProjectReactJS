@@ -4,6 +4,7 @@ import MyButton from '../../UI/button/MyButton';
 import { useDispatch } from 'react-redux';
 import { addPostAction, updatePostTextAction } from '../../../redux/profileReducer';
 import Loader from '../../UI/loader/Loader';
+import ProfileStatus from './profileStatus/ProfileStatus';
 
 const ProfileInfo = (props) => {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const ProfileInfo = (props) => {
                 {props.profile.photos.small ? <img src={props.profile.photos.small} /> : <img src={userLogo} alt="" />}
                 <div>
                     <p>{props.profile.fullName}</p>
-                    <small>{props.profile.aboutMe}</small>
+                    <ProfileStatus status={'Hello!'}/>
                 </div>
             </div>
             <div className={classes.post_input_container}>
